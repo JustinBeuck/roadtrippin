@@ -8,8 +8,7 @@
  * Controller of the roadtripApp
  */
 
-angular.module('roadtrippin')
-  .controller('MainCtrl', function ($scope) {
+app.controller('MainCtrl', function ($scope) {
     $scope.addressSend = function() {
       $scope.startAddress;
       $scope.endAddress;

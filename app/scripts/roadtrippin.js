@@ -1,4 +1,4 @@
 'use strict';
 
-angular.module('roadtrippin', [])
+var app = angular.module('roadtrippin', []);
 
