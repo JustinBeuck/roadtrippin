@@ -1,0 +1,39 @@
+<div ng-controller="carController" class="carCtrl">
+  <div>
+    Make:
+    <select class="form-control pull-right" ng-change="getmodels(selectedMakeId)" ng-model="selectedMakeId">
+      <option ng-repeat="make in makes" value="{{make.id}}">{{make.name}}</option>
+    </select>
+  </div>
+
+  {{error}}
+
+  <div>
+    Model:
+    <select class="form-control pull-right" ng-change="getyears(selectedModelId)" ng-model="selectedModelId">
+      <option ng-repeat="model in models" value="{{model.id}}">{{model.id}}</option>
+    </select>
+  </div>
+
+  {{error2}}
+    
+
+    <div>
+    Year:<select class="form-control pull-right" ng-change="getTrims(selectedYearId)" ng-model="selectedYearId">>
+    <option ng-repeat="yearObj in years" value="{{yearObj.id}}">{{yearObj.year}}</option>
+  </select>
+  </div>
+
+    {{error3}} 
+ 
+
+    <div>
+    Trim:<select class="form-control pull-right">
+    <option ng-repeat="style in styles" value="{{style.id}}">{{style.name}}</option>
+  </select>
+  </div>
+    {{error3}} 
+
+</div>
+
+<a class="btn btn-warning first" ng-click="nextview2()" type="button">Set Your Trip</a>
