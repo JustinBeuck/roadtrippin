@@ -1,4 +1,4 @@
-              <div class="row" ng-controller="MainCtrl">
+              <div class="row" ng-controller="mainController">
               <div>
               <div class="input-group">
               <div class="container">
@@ -8,7 +8,7 @@
                 
                 <input name="end" type="text" class="form-control" ng-model="endAddress" placeholder="Enter Destination">
                 <br />
-                <button class="btn btn-default">Submit</button>
+                <a class="btn btn-warning first" ng-click="nextview3()" type="button">Set Your Trip</a>
               </form>
               <br />
               <br />
@@ -20,3 +20,5 @@
           </div>
           </div><!-- /.row -->
         </div>
+
+        <video id="bgvid" src='images/road2.png' autoplay loop muted></video>

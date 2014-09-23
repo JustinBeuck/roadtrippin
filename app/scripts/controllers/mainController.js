@@ -8,7 +8,7 @@
  * Controller of the roadtripApp
  */
 
-app.controller('HomeCtrl', function ($scope,$location) {
+app.controller('mainController', function ($scope,$location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -18,6 +18,11 @@ app.controller('HomeCtrl', function ($scope,$location) {
     $scope.nextView = function() {
       console.log('works??');
       $location.path('/AddVehicle'); 
+    },
+
+    $scope.nextView2 = function() {
+      console.log('still works??');
+      $location.path('/AddAddress'); 
     };
 
   });

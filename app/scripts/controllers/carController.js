@@ -1,11 +1,7 @@
 (function() {
     
   var carController = function($scope, $http, $location) {
-        $scope.nextView = function() {
-      console.log('works??');
-      $location.path('/Add'); 
-    };
-    
+
     console.log('in carController');
     // get all the makes
       $http.get('https://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=7fr982626at7633r7qgcwu87')
@@ -77,6 +73,11 @@
         $scope.styles = trim.styles;
 
       };
+      $scope.nextView2 = function() {
+      console.log('still works??');
+      $location.path('/AddAddress'); 
+    };
+    
 
   };
   

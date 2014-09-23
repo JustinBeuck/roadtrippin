@@ -11,11 +11,11 @@ app.config(['$routeProvider',
       }).
       when('/AddAddress', {
 			templateUrl: 'templates/addressView.html',
-			controller: 'main-ctrl'
+			controller: 'carController'
       }).
       when('/', {
 			templateUrl: 'templates/homeView.html',
-			controller: 'HomeCtrl'
+			controller: 'mainController'
       }).
       otherwise({
 			redirectTo: '/'
