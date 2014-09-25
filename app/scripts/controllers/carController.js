@@ -1,7 +1,7 @@
 (function() {
 
     
-  var carController = function($scope, $http, $location) {
+  var carController = function($scope, $http, $location, $rootScope) {
 
     $scope.selectedtrimId = "";
 
@@ -102,6 +102,8 @@
 
             $scope.milesToEmptyTank = ($scope.milesPerGallon.value * $scope.fuelCapacity.value);
               console.log($scope.milesToEmptyTank);
+
+            $rootScope.milesToEmptyTank = $scope.milesToEmptyTank;
               
     
           },
@@ -119,5 +121,5 @@
 
   };
   
-  app.controller('carController', ['$scope', '$http', '$location', carController]);
+  app.controller('carController', ['$scope', '$http', '$location', '$rootScope', carController]);
 })();
