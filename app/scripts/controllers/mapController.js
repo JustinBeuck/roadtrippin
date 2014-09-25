@@ -89,8 +89,8 @@ app.directive('map', function () {
                     if (status === google.maps.DirectionsStatus.OK) {
                         directionsDisplay.setDirections(response);
                         console.log(response.routes[0].legs[0].distance.text);
-                       var mileDistance = response.routes[0].legs[0].distance.text;
-                        console.log(mileDistance);
+                       scope.mileDistance = response.routes[0].legs[0].distance.text;
+                        console.log(scope.mileDistance);
                         document.getElementById('wrongAddress').style.display = "none";
                     } else {
                         document.getElementById('wrongAddress').style.display = "block";

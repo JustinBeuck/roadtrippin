@@ -92,16 +92,18 @@
           function (response) {
             // console.log("trying to find MPG:", response.data.equipment[0].attributes)
             // nicks dumb ill crazy hot stupid fresh javascript skills below.
-            milesPerGallon = _.find(response.data.equipment[0].attributes,
+            $scope.milesPerGallon = _.find(response.data.equipment[0].attributes,
                                  function(obj){ return obj.name == "Epa Combined Mpg"; });
             // console.log(milesPerGallon.value)
 
-            fuelCapacity = _.find(response.data.equipment[0].attributes,
+            $scope.fuelCapacity = _.find(response.data.equipment[0].attributes,
                                  function(some){ return some.name == "Fuel Capacity"; });
             // console.log(fuelCapacity.value)
 
-            milesToEmptyTank = (milesPerGallon.value * fuelCapacity.value);
-            // console.log(milesToEmptyTank);
+            $scope.milesToEmptyTank = ($scope.milesPerGallon.value * $scope.fuelCapacity.value);
+              console.log($scope.milesToEmptyTank);
+              
+    
           },
           function (error) {
             $scope.error2 = JSON.stringify(error);
