@@ -9,6 +9,7 @@ app.directive('map', function () {
         map,
         marker,
         mapObj,
+        markerArray = [],
         infowindow;
 
     mapObj = {
@@ -40,7 +41,7 @@ app.directive('map', function () {
             console.log("working!!!!!!!!!!!");
             scope.init = function () {
                 var mapOptions = {
-                    zoom: scope.zoom !== undefined ? scope.zoom : 14,
+                    zoom: scope.zoom !== undefined ? scope.zoom : 16,
                     mapTypeId: scope.type.toLowerCase(),
                     streetViewControl: false
                 };
@@ -99,7 +100,27 @@ app.directive('map', function () {
                 directionsDisplay.setMap(map);
 
                 directionsDisplay.setPanel(document.getElementById('directionsList'));
+
+//                 var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+//                 var mapOptions = {
+//   zoom: 4,
+//   center: myLatlng
+// }
+
+//                 var map = new google.maps.Map(document.getElementById("theMap"), mapOptions);
+
+//                 var marker = new google.maps.Marker({
+//                     position: myLatlng,
+//                     map: map,
+//                     title:"Hello World!"
+// });
+
+
+
+
+
             };
+
 
             scope.clearDirections = function () {
                 scope.init();
