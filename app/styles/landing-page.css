@@ -127,6 +127,7 @@ a.btn.btn-primary.btn-lg.btn-responsive {
     text-shadow: none;
 }
 
+/* media */
   
 @media (max-width: 768px) {
   .btn-responsive {
