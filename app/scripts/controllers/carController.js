@@ -1,6 +1,9 @@
 (function() {
+
     
   var carController = function($scope, $http, $location) {
+
+    $scope.selectedtrimId = "";
 
     console.log('in carController');
     // get all the makes
@@ -66,6 +69,8 @@
           console.log("finding selected years", $scope.years);
           console.log("finding scopeYear", scopeYear);
           return scopeYear.id === makeYearId
+
+          
         });
 
         console.log("Selecting styles for:", trim);
@@ -73,6 +78,37 @@
         $scope.styles = trim.styles;
 
       };
+
+        $scope.getFuelCapacity = function() {
+
+          console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+          console.log("finding fuel capacity Id", $scope.selectedtrimId.id);
+        // trimId = parseInt(selectedTrimId);
+        
+
+        
+        $http.get('https://api.edmunds.com/api/vehicle/v2/styles/'+$scope.selectedtrimId.id+'/equipment?availability=standard&equipmentType=OTHER&name=SPECIFICATIONS&fmt=json&api_key=7fr982626at7633r7qgcwu87')
+        .then(
+          function (response) {
+            console.log("trying to find MPG:", response.data.equipment[0].attributes)
+            // nicks dumb ill crazy hot stupid fresh javascript skills below.
+            milesPerGallon = _.find(response.data.equipment[0].attributes,
+                                 function(obj){ return obj.name == "Epa Combined Mpg"; });
+            console.log(milesPerGallon.value)
+
+            fuelCapacity = _.find(response.data.equipment[0].attributes,
+                                 function(some){ return some.name == "Fuel Capacity"; });
+            console.log(fuelCapacity.value)
+
+            milesToEmptyTank = (milesPerGallon.value * fuelCapacity.value);
+            console.log(milesToEmptyTank);
+          },
+          function (error) {
+            $scope.error2 = JSON.stringify(error);
+          }
+        );
+      };
+      
       $scope.nextView2 = function() {
       console.log('still works??');
       $location.path('/AddAddress'); 

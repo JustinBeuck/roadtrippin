@@ -24,5 +24,4 @@ app.controller('mainController', function ($scope,$location) {
       console.log('still works??');
       $location.path('/AddAddress'); 
     };
-
   });

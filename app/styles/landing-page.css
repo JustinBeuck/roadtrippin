@@ -16,7 +16,6 @@ body,
 html {
     width: 100%;
     height: 100%;
-    text-shadow: .5px .5px black;
 }
 
 h1,h2,h3 {
@@ -35,7 +34,7 @@ h6 {
     font-family: 'Graduate', cursive;
     font-weight: 900;
     font-size: 25px;
-    text-shadow: .5px .5px white;
+
 
 }
 
@@ -43,9 +42,12 @@ h3 {
     font-family: 'Graduate', cursive;
     font-weight: 600;
     font-size: 25px;
-    text-shadow: 2px 2px white;
     /*background-color:rgba(231, 76, 60,0.3);*/
     color: white;
+}
+
+.panel {
+    background-color:rgba(0,0,0,0.4);
 }
 
 .navbar {
@@ -71,15 +73,13 @@ h3 {
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 50px;
     text-align: center;
-    color: #c0392b;
+    color: #777;
     text-shadow: 0 0 2px #d35400;
-    background: url(../img/intro-bg.jpg) no-repeat center center;
-    background-size: cover;
 
 }
 .form-control {
     background-color: white;
-    width: 50%;
+    /*width: 50%;*/
 }
 
 .intro-message {
@@ -90,18 +90,20 @@ h3 {
 
 }
 
-.carCtrl {
-    background-color:rgba(00,00,00,0.4);
+div.carCtrl {
+    background-color:rgba(0,0,0,0.2);
     box-shadow: 2px 5px 5px black;
     border-radius: 5px;
+    margin: 2px;
     color: white;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Graduate', cursive;
 }
 
 .intro-message > h1 {
     margin: 0;
     text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
     font-size: 5em;
+    color: #c0392b;
 }
 
 .intro-divider {
@@ -113,6 +115,37 @@ h3 {
 .intro-message > h3 {
     text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
 }
+
+.angular-google-map-container { 
+    height: 400px; 
+}
+
+a.btn.btn-primary.btn-lg.btn-responsive {
+    background-color: #c0392b;
+    border-color: #c0392b;
+    color: white;
+    text-shadow: none;
+}
+
+  
+@media (max-width: 768px) {
+  .btn-responsive {
+    padding:2px 4px;
+    font-size:80%;
+    line-height: 1;
+    border-radius:3px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .btn-responsive {
+    padding:4px 9px;
+    font-size:90%;
+    line-height: 1.2;
+  }
+}
+
+
 
 @media(max-width:767px) {
     .intro-message {
@@ -233,4 +266,8 @@ video#bgvid{
   width: auto;
   height: auto;
   z-index: -100;
+}
+
+.home-button {
+    text-align: center;
 }

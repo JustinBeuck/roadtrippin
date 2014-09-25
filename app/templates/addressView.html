@@ -1,24 +1,62 @@
-              <div class="row" ng-controller="mainController">
-              <div>
-              <div class="input-group">
-              <div class="container">
-              <form name="tripForm" ng-submit="addressSend()">
-                <input name="start" type="text" class="form-control" ng-model="startAddress" placeholder="Start your Roadtrip Here!">
-                <br />
-                
-                <input name="end" type="text" class="form-control" ng-model="endAddress" placeholder="Enter Destination">
-                <br />
-                <a class="btn btn-warning first" ng-click="nextview3()" type="button">Set Your Trip</a>
-              </form>
-              <br />
-              <br />
-              
-            </form>
-            <!-- form to style -->
-            </div><!-- /input-group -->
-            </div><!-- /.col-lg-6 -->
-          </div>
-          </div><!-- /.row -->
-        </div>
+<br />
 
-        <video id="bgvid" src='images/road2.png' autoplay loop muted></video>
+
+<!-- <div ng-app="mapComponent"> -->
+<div class="container">
+ <div class="row">
+    <map type="roadmap" ></map>
+    </div>
+    </div>
+
+
+
+    <!-- <div class="col-md-6 nothing">
+    <div id="directionsList"></div>
+    </div> -->
+<!-- </div> -->
+
+
+
+
+
+<style type="text/css">
+
+body {
+  background-image: url('http://shields.aaroads.com/blog/photos/DSC_062566A.jpg') ;
+  background-position: center center;
+  }
+#theMap {
+  position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+   position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+
+}
+
+.col-md-6.nothing{
+  background-color: white;
+}
+
+.mapContainer {
+  position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Ratio 16:9 ( 100%/16*9 = 56.25% ) */
+}
+img {
+    max-width: none;
+}
+#wrongAddress {
+    display:none;
+}
+
+input {
+  width: 100%;
+}
+
+</style>
