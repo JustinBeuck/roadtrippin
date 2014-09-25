@@ -8,7 +8,7 @@
  * Controller of the roadtripApp
  */
 
-app.controller('mainController', function ($scope,$location) {
+app.controller('mainController', function ($scope,$location, $http) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -24,4 +24,5 @@ app.controller('mainController', function ($scope,$location) {
       console.log('still works??');
       $location.path('/AddAddress'); 
     };
+
   });

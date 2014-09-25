@@ -77,14 +77,20 @@ app.directive('map', function () {
             scope.init();
 
             scope.getDirections = function () {
+
+
                 var request = {
                     origin: scope.origin,
                     destination: scope.endPoint,
                     travelMode: google.maps.DirectionsTravelMode.DRIVING
                 };
-                directionsService.route(request, function (response, status) {
+                directionsService.route(request, function (response, status
+                    ) {
                     if (status === google.maps.DirectionsStatus.OK) {
                         directionsDisplay.setDirections(response);
+                        console.log(response.routes[0].legs[0].distance.text);
+                       var mileDistance = response.routes[0].legs[0].distance.text;
+                        console.log(mileDistance);
                         document.getElementById('wrongAddress').style.display = "none";
                     } else {
                         document.getElementById('wrongAddress').style.display = "block";
@@ -93,7 +99,6 @@ app.directive('map', function () {
                 directionsDisplay.setMap(map);
 
                 directionsDisplay.setPanel(document.getElementById('directionsList'));
-
             };
 
             scope.clearDirections = function () {
