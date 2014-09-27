@@ -8,12 +8,14 @@
  * Controller of the roadtripApp
  */
 
-app.controller('mainController', function ($scope,$location, $http) {
+app.controller('mainController', function ($scope,$location,$http) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    
 
     $scope.nextView = function() {
       console.log('works??');

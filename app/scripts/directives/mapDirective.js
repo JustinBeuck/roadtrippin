@@ -1,6 +1,6 @@
 // var component = angular.module('mapController', []);
 
-app.directive('map', function () {
+app.directive('map', function() {
     'use strict';
 
     var directionsDisplay = new google.maps.DirectionsRenderer(),
@@ -13,8 +13,9 @@ app.directive('map', function () {
         infowindow;
 
     mapObj = {
-        
+
         restrict: 'EAC',
+        transclude: true,
         scope: {
             destination: '@',
             markerContent: '@',
@@ -37,9 +38,9 @@ app.directive('map', function () {
             '<button class="clearDirections alert" ng-click="clearDirections()" ng-disabled="mapContainer.$invalid">Clear</button>' +
             '</div>' +
             '</form>', // todo: use template url and template file
-        link: function (scope, element, attrs) {
+        link: function(scope, element, attrs) {
             console.log("working!!!!!!!!!!!");
-            scope.init = function () {
+            scope.init = function() {
                 var mapOptions = {
                     zoom: scope.zoom !== undefined ? scope.zoom : 16,
                     mapTypeId: scope.type.toLowerCase(),
@@ -50,7 +51,7 @@ app.directive('map', function () {
 
                 geocoder.geocode({
                     address: scope.endPoint
-                }, function (results, status) {
+                }, function(results, status) {
                     var location = results[0].geometry.location;
                     if (status === google.maps.GeocoderStatus.OK) {
                         map.setCenter(location);
@@ -62,7 +63,7 @@ app.directive('map', function () {
                         infowindow = new google.maps.InfoWindow({
                             content: scope.markerContent !== undefined ? scope.markerContent : 'Google HQ'
                         });
-                        google.maps.event.addListener(marker, 'click', function () {
+                        google.maps.event.addListener(marker, 'click', function() {
                             return infowindow.open(map, marker);
                         });
 
@@ -77,7 +78,7 @@ app.directive('map', function () {
 
             scope.init();
 
-            scope.getDirections = function () {
+            scope.getDirections = function() {
 
 
                 var request = {
@@ -85,13 +86,14 @@ app.directive('map', function () {
                     destination: scope.endPoint,
                     travelMode: google.maps.DirectionsTravelMode.DRIVING
                 };
-                directionsService.route(request, function (response, status
-                    ) {
+                directionsService.route(request, function(response, status) {
                     if (status === google.maps.DirectionsStatus.OK) {
                         directionsDisplay.setDirections(response);
-                        console.log(response.routes[0].legs[0].distance.text);
-                       scope.mileDistance = response.routes[0].legs[0].distance.text;
+                        // console.log((response.routes[0].legs[0].distance.value * 0.00062137)/scope.myFuelRange.overview_path.length);
+                        
+                        scope.mileDistance = response.routes[0].legs[0].distance.text;
                         console.log(scope.mileDistance);
+                        scope.showSteps(response);
                         document.getElementById('wrongAddress').style.display = "none";
                     } else {
                         document.getElementById('wrongAddress').style.display = "block";
@@ -101,28 +103,40 @@ app.directive('map', function () {
 
                 directionsDisplay.setPanel(document.getElementById('directionsList'));
 
-//                 var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
-//                 var mapOptions = {
-//   zoom: 4,
-//   center: myLatlng
-// }
-
-//                 var map = new google.maps.Map(document.getElementById("theMap"), mapOptions);
-
-//                 var marker = new google.maps.Marker({
-//                     position: myLatlng,
-//                     map: map,
-//                     title:"Hello World!"
-// });
-
-
-
-
 
             };
 
+            scope.showSteps = function(directionResult) {
+              // var myRoute = directionResult.routes[0].legs[0];
+              var myFuelRange = directionResult.routes[0];
+              var milesPerMarker = (directionResult.routes[0].legs[0].distance.value * 0.00062137)/(myFuelRange.overview_path.length);
 
-            scope.clearDirections = function () {
+              for (var i = 0; i < myFuelRange.overview_path.length; i++) {
+                var marker = new google.maps.Marker({
+                  position: myFuelRange.overview_path[162],
+                  map: map
+                });
+                console.log(milesPerMarker);
+                console.log(milesToEmptyTank);
+                  // console.log(myRoute.steps[i].start_location);
+                  // console.log(myRoute.steps[i].start_location);
+                  // console.log(myFuelRange.overview_path[i]);
+                // attachInstructionText(marker, myRoute.steps[i].instructions);
+                markerArray[i] = marker;
+              }
+            }
+
+            // function attachInstructionText(marker, text) {
+            //   google.maps.event.addListener(marker, 'click', function() {
+            //     // Open an info window when the marker is clicked on,
+            //     // containing the text of the step.
+            //     stepDisplay.setContent(text);
+            //     stepDisplay.open(map, marker);
+            //   });
+            // }
+
+
+            scope.clearDirections = function() {
                 scope.init();
                 directionsDisplay.setPanel(null);
                 scope.origin = '';
