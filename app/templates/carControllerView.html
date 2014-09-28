@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-lg-6">
     <div class="intro-header">
       <div class="container">
         <div class="intro-message">
@@ -9,53 +9,49 @@
       </div>
     </div>
   </div>
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <div class="col-md-6">
-    <div class="container">
-      <div ng-controller="carController" class="carCtrl">
-        <div>
-          Make:
-          <select class="form-control pull-right" ng-change="getmodels(selectedMakeId)" ng-model="selectedMakeId">
-            <option ng-repeat="make in makes" value="{{make.id}}">{{make.name}}</option>
-          </select>
+  <div class="col-lg-6">
+    <div class="intro-header">
+      <div class="container">
+        <div class="intro-message">
+          <div ng-controller="carController" class="carCtrl">
+            <div>
+              Make:
+              <select class="form-control pull-right" ng-change="getmodels(selectedMakeId)" ng-model="selectedMakeId">
+                <option ng-repeat="make in makes" value="{{make.id}}">{{make.name}}</option>
+              </select>
+            </div>
+            {{error}}
+            <div>
+              Model:
+              <select class="form-control pull-right" ng-change="getyears(selectedModelId)" ng-model="selectedModelId">
+                <option ng-repeat="model in models" value="{{model.id}}">{{model.id}}</option>
+              </select>
+            </div>
+            {{error2}}
+            
+            <div>
+              Year:<select class="form-control pull-right" ng-change="getTrims(selectedYearId)" ng-model="selectedYearId">>
+                <option ng-repeat="yearObj in years" value="{{yearObj.id}}">{{yearObj.year}}</option>
+              </select>
+            </div>
+            {{error3}}
+            <div>
+              <!-- Trim:<select class="form-control pull-right"> -->
+              <!-- <option ng-repeat="style in styles" value="{{style.id}}" ng-model="selectedtrimId" ng-change="getFuelCapacity(selectedTrimId,style)">{{style.name}}</option>
+              ng-change="getFuelCapacity()" -->
+            Trim:<select class="form-control pull-right" ng-options="style.name for style in styles"  ng-model="selectedtrimId" ng-change="getFuelCapacity()"></select>
+            <!-- </select> -->
+          </div>
         </div>
-        {{error}}
         <div>
-          Model:
-          <select class="form-control pull-right" ng-change="getyears(selectedModelId)" ng-model="selectedModelId">
-            <option ng-repeat="model in models" value="{{model.id}}">{{model.id}}</option>
-          </select>
         </div>
-        {{error2}}
-        
-        <div>
-          Year:<select class="form-control pull-right" ng-change="getTrims(selectedYearId)" ng-model="selectedYearId">>
-            <option ng-repeat="yearObj in years" value="{{yearObj.id}}">{{yearObj.year}}</option>
-          </select>
-        </div>
-        {{error3}}
-        <div>
-          <!-- Trim:<select class="form-control pull-right"> -->
-          <!-- <option ng-repeat="style in styles" value="{{style.id}}" ng-model="selectedtrimId" ng-change="getFuelCapacity(selectedTrimId,style)">{{style.name}}</option>
-          ng-change="getFuelCapacity()" -->
-        Trim:<select class="form-control pull-right" ng-options="style.name for style in styles"  ng-model="selectedtrimId" ng-change="getFuelCapacity()"></select>
-        <!-- </select> -->
-      </div>
-      <div>
-      </div>
-      <br />
+        <br />
+<div class="row home-button">
+  <a class="btn btn-primary btn-lg btn-responsive" ng-click="nextView2()" type="button">Start Your Road Trip</a>
+  
+</div>
       </div>
     </div>
   </div>
 </div>
-    <div class="row home-button">
-        <a class="btn btn-primary btn-lg btn-responsive" ng-click="nextView2()" type="button">Start Your Road Trip</a>
-        
-  </div>
-
 <video id="bgvid" src='images/road2.png' autoplay loop muted></video>

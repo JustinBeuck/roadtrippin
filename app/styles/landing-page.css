@@ -8,6 +8,7 @@
 }
 
 * {
+    /*border: 1px solid red;*/
     /*font-family: 'Graduate', cursive;*/
     /*text-shadow: .5px .5px silver;*/
 }
@@ -67,6 +68,9 @@ h3 {
     font-size: 18px;
     font-weight: 400;
 
+}
+.row .home-button {
+    margin-bottom: 40px;
 }
 
 .intro-header {
