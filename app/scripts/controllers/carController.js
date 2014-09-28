@@ -104,6 +104,7 @@
               console.log($scope.milesToEmptyTank);
 
             $rootScope.milesToEmptyTank = $scope.milesToEmptyTank;
+            $scope.grabMiles($scope.milesToEmptyTank);
               
     
           },

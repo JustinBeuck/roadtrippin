@@ -1,4 +1,9 @@
-// var component = angular.module('mapController', []);
+ // var app = angular.module('app',[]);
+
+// app.controller('tripController', ['$scope', function($scope) {
+//     $scope.milesPerMarker;
+//     console.log($scope.milesPerMarker);
+// }])
 
 app.directive('map', function() {
     'use strict';
@@ -109,15 +114,15 @@ app.directive('map', function() {
             scope.showSteps = function(directionResult) {
               // var myRoute = directionResult.routes[0].legs[0];
               var myFuelRange = directionResult.routes[0];
-              var milesPerMarker = (directionResult.routes[0].legs[0].distance.value * 0.00062137)/(myFuelRange.overview_path.length);
+               scope.milesPerMarker = (directionResult.routes[0].legs[0].distance.value * 0.00062137)/(myFuelRange.overview_path.length);
+              
 
               for (var i = 0; i < myFuelRange.overview_path.length; i++) {
                 var marker = new google.maps.Marker({
                   position: myFuelRange.overview_path[162],
                   map: map
                 });
-                console.log(milesPerMarker);
-                console.log(milesToEmptyTank);
+                console.log(scope.milesPerMarker);
                   // console.log(myRoute.steps[i].start_location);
                   // console.log(myRoute.steps[i].start_location);
                   // console.log(myFuelRange.overview_path[i]);
