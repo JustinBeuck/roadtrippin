@@ -114,6 +114,7 @@
 
         );
       };
+
       
       $scope.nextView2 = function() {
       // console.log('still works??');

@@ -1,13 +1,14 @@
         <div ng-controller="carController" class="carCtrl">
-          <div ng-show="milesPerGallon.value != null">
+          <div ng-show="milesPerGallon.value != null" class="stats">
+          <h1>Road Trip Stats</h1>
             <div>
-              <h2>Miles Per Gallon: {{milesPerGallon.value}}</h2>
+              <h2> Miles Per Gallon:  {{milesPerGallon.value}}</h2>
             </div>
             <div>
-              <h2>Tank Capacity: {{fuelCapacity.value}}</h2>
+              <h2> Tank Capacity:  {{fuelCapacity.value}}</h2>
             </div>
             <div>
-              <h2>Miles to Empty: {{milesToEmptyTank}}</h2>
+              <h2> Miles to Empty:  {{milesToEmptyTank}}</h2>
             </div>
           </div>
           <div ng-show="milesPerGallon.value == null">

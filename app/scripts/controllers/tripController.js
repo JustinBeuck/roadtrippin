@@ -10,13 +10,25 @@
 
 // var roadtrippin = angular.module('roadtrippin',[]);
 
-app.controller('tripController', ['$scope', function($scope) {
+app.controller('tripController', ['$scope', function ($scope) {
+
 		$scope.grabMiles = function (miles) { 
-	console.log(miles);
-			}
-			// console.log(milesPerMarker);
-		// $rootScope.grabMileMarkers = function (markers) {
-		// 	console.log(markers);
-		// }  	
+			$scope.milesToEmpty = miles
+			console.log(miles);
+		};
+		$scope.updateMilesPerMarker = function(milesPerMarker) {
+			$scope.milesPerMarker = milesPerMarker;
+			// console.log('debuggggggg')
+			// console.log($scope.milesPerMarker);
+			// console.log(Math.floor($scope.milesToEmpty / $scope.milesPerMarker));	
+			// $scope.num = Math.floor($scope.milesToEmpty / $scope.milesPerMarker); 
+		// $scope.$parent.gasLocation($scope.num);
+			$scope.gasLocation();
+		}
+		$scope.gasLocation = function () {
+			$scope.num = Math.floor($scope.milesToEmpty / $scope.milesPerMarker);
+			console.log($scope.num)
+			// $scope.$parent.$parent.findFuel($scope.num);
+		}
 	}
 ]);

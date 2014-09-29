@@ -30,8 +30,7 @@ app.directive('map', function() {
         },
         replace: true,
         template: '<form novalidate name="mapContainer" class="mapContainer panel">' +
-            '<div id="theMap"></div>' +
-            '<div class="directions" ng-show="directions || directions==undefined">' +
+        '<div class="directions" ng-show="directions || directions==undefined">' +
             '<label>Origin:</label>' + '<br />' +
             '<input type="text" ng-model="origin" name="origin"  required>' +
             '<small class="error" id="wrongAddress">Error: \n ' +
@@ -42,6 +41,7 @@ app.directive('map', function() {
             '<button class="getDirections" ng-click="getDirections()" ng-disabled="mapContainer.$invalid">Get Directions</button> ' +
             '<button class="clearDirections alert" ng-click="clearDirections()" ng-disabled="mapContainer.$invalid">Clear</button>' +
             '</div>' +
+            '<div id="theMap"></div>' +
             '</form>', // todo: use template url and template file
         link: function(scope, element, attrs) {
             console.log("working!!!!!!!!!!!");
@@ -107,7 +107,7 @@ app.directive('map', function() {
                 directionsDisplay.setMap(map);
 
                 directionsDisplay.setPanel(document.getElementById('directionsList'));
-
+                    // scope.showSteps(response);
 
             };
 
@@ -117,19 +117,38 @@ app.directive('map', function() {
                scope.milesPerMarker = (directionResult.routes[0].legs[0].distance.value * 0.00062137)/(myFuelRange.overview_path.length);
               
 
-              for (var i = 0; i < myFuelRange.overview_path.length; i++) {
-                var marker = new google.maps.Marker({
-                  position: myFuelRange.overview_path[162],
+              // for (var i = 0; i < myFuelRange.overview_path.length; i++) {
+              //   var marker = new google.maps.Marker({
+              //     position: myFuelRange.overview_path[22],
+              //     // position: myFuelRange.overview_path[52],
+              //     map: map
+              //   });
+              //   // console.log(scope.milesPerMarker);
+              //     // console.log(myRoute.steps[i].start_location);
+              //     // console.log(myRoute.steps[i].start_location);
+              //     // console.log(myFuelRange.overview_path[i]);
+              //   // attachInstructionText(marker, myRoute.steps[i].instructions);
+                
+              // }
+              scope.$parent.$parent.updateMilesPerMarker(scope.milesPerMarker);
+
+              // scope.$apply('updateMilesPerMarker(' + scope.milesPerMarker + ')');
+            scope.$parent.$parent.$watch('num', function(newVal) {
+                console.log("New val for watched prpo", newVal);
+                // scope.range = num;
+                for (var i = newVal; i < myFuelRange.overview_path.length; i += newVal) {
+               new google.maps.Marker({
+                  position: myFuelRange.overview_path[i],
+                  // position: myFuelRange.overview_path[52],
                   map: map
                 });
-                console.log(scope.milesPerMarker);
-                  // console.log(myRoute.steps[i].start_location);
-                  // console.log(myRoute.steps[i].start_location);
-                  // console.log(myFuelRange.overview_path[i]);
-                // attachInstructionText(marker, myRoute.steps[i].instructions);
-                markerArray[i] = marker;
-              }
+               console.log(myFuelRange.overview_path[i]);
+           }
+
+            });
+
             }
+
 
             // function attachInstructionText(marker, text) {
             //   google.maps.event.addListener(marker, 'click', function() {
@@ -139,6 +158,8 @@ app.directive('map', function() {
             //     stepDisplay.open(map, marker);
             //   });
             // }
+
+
 
 
             scope.clearDirections = function() {
@@ -153,7 +174,6 @@ app.directive('map', function() {
     };
 
     return mapObj;
-
 
 
 });
