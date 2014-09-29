@@ -8,6 +8,7 @@
 }
 
 * {
+    border-radius: 5px;
     /*border: 1px solid red;*/
     /*font-family: 'Graduate', cursive;*/
     /*text-shadow: .5px .5px silver;*/
@@ -95,12 +96,12 @@ h3 {
 }
 
 div.carCtrl {
-    background-color:rgba(0,0,0,0.2);
-    box-shadow: 2px 5px 5px black;
+    background-color:rgba(255,255,255,0.0);
     border-radius: 5px;
     margin: 2px;
-    color: white;
+    color: #2980b9;
     font-family: 'Graduate', cursive;
+    
 }
 
 .intro-message > h1 {

@@ -62,7 +62,7 @@
       };
 
       $scope.getTrims = function(yearIdStr) {
-        // console.log("finding yearIdStr", yearIdStr)
+        console.log("finding yearIdStr", yearIdStr)
         makeYearId = parseInt(yearIdStr);
 
         var trim = _.find($scope.years, function (scopeYear) {
@@ -82,7 +82,7 @@
         $scope.getFuelCapacity = function() {
 
           // console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-          // console.log("finding fuel capacity Id", $scope.selectedtrimId.id);
+          console.log("finding fuel capacity Id", $scope.selectedtrimId.id);
         // trimId = parseInt(selectedTrimId);
         
 
@@ -94,13 +94,13 @@
             // nicks dumb ill crazy hot stupid fresh javascript skills below.
             $scope.milesPerGallon = _.find(response.data.equipment[0].attributes,
                                  function(obj){ return obj.name == "Epa Combined Mpg"; });
-            // console.log(milesPerGallon.value)
+            console.log($scope.milesPerGallon.value)
 
             $scope.fuelCapacity = _.find(response.data.equipment[0].attributes,
                                  function(some){ return some.name == "Fuel Capacity"; });
-            // console.log(fuelCapacity.value)
+            console.log($scope.fuelCapacity.value)
 
-            $scope.milesToEmptyTank = ($scope.milesPerGallon.value * $scope.fuelCapacity.value);
+            $scope.milesToEmptyTank = Math.round(($scope.milesPerGallon.value * $scope.fuelCapacity.value));
               console.log($scope.milesToEmptyTank);
 
             $rootScope.milesToEmptyTank = $scope.milesToEmptyTank;
@@ -111,6 +111,7 @@
           function (error) {
             $scope.error2 = JSON.stringify(error);
           }
+
         );
       };
       

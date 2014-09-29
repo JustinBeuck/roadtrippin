@@ -2,28 +2,24 @@
 
 
 <!-- <div ng-app="mapComponent"> -->
-<div class="container">
- <div class="row">
-  {{milesToEmptyTank}}
-  {{milesPerMarker}}
 
-    <map type="roadmap" ></map>
-    </div>
-    </div>
-
-
-
-
-    <!-- <div class="col-md-6 nothing">
-    <div id="directionsList"></div>
-    </div> -->
-<!-- </div> -->
+        <div class="col-md-4">
+            <map type="roadmap" ></map>
+        </div>
+        <div class="col-md-4" ng-include src="'/templates/carControllerView.html'"></div>
+        <div class="col-md-4">
+            <div id="directionsList"></div>
+        </div>
 
 
 
 
 
 <style type="text/css">
+
+* {
+  /*border: 1px solid red;*/
+}
 
 label {
   background-color: gray
@@ -33,6 +29,7 @@ label {
 body {
   background-image: url('http://shields.aaroads.com/blog/photos/DSC_062566A.jpg') ;
   background-position: center center;
+  /*background-color: silver;*/
   }
 
   #theMap {
@@ -42,15 +39,27 @@ body {
 
 }
 
-.col-md-6.nothing{
+#directionsList {
   background-color: white;
+    top: 0;
+    bottom:0;
+    /*position:fixed;*/
+    overflow-y:scroll;
+    overflow-x:hidden;
+    height: 400px;
+    width: 100%;
+    border: 2px solid #2980b9;
+    border-radius: 5px;
+    box-shadow: 10px 10px 5px #888888;
 }
+
 
 .mapContainer {
   display:block;
-  height: 310px;
+  height: 400px;
     width:100%;
     margin:5px;
+    border: 2px solid #2980b9;
 }
 img {
     max-width: none;
@@ -60,7 +69,7 @@ img {
 }
 
 input {
-  width: 80%;
+  width: 100%;
 }
 
 </style>
