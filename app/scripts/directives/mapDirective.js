@@ -45,6 +45,11 @@ app.directive('map', function() {
             '<div id="theMap"></div>' +
             '</form>', // todo: use template url and template file
         link: function(scope, element, attrs) {
+            scope.$on('add-gas-station', function(e, data) {
+                console.log("gas station latitude:", parseFloat(data.lat));
+                console.log("gas station longitude:", parseFloat(data.lng));
+                scope.addGasStations(parseFloat(data.lat), parseFloat(data.lng));
+            });
             console.log("working!!!!!!!!!!!");
             scope.init = function() {
                 var mapOptions = {
@@ -114,35 +119,49 @@ app.directive('map', function() {
 
             scope.showSteps = function(directionResult) {
               // var myRoute = directionResult.routes[0].legs[0];
-              var myFuelRange = directionResult.routes[0];
-               scope.milesPerMarker = (directionResult.routes[0].legs[0].distance.value * 0.00062137)/(myFuelRange.overview_path.length);
+                var myFuelRange = directionResult.routes[0];
+                scope.milesPerMarker = (directionResult.routes[0].legs[0].distance.value * 0.00062137)/(myFuelRange.overview_path.length);
               
 
 
-              scope.$parent.$parent.updateMilesPerMarker(scope.milesPerMarker);
+                scope.$parent.$parent.updateMilesPerMarker(scope.milesPerMarker);
 
               // scope.$apply('updateMilesPerMarker(' + scope.milesPerMarker + ')');
-            scope.$parent.$parent.$watch('num', function(newVal) {
+                scope.$parent.$parent.$watch('num', function(newVal) {
                 console.log("New val for watched prpo", newVal);
                 // scope.range = num;
                 for (var i = newVal; i < myFuelRange.overview_path.length; i += newVal) {
-               new google.maps.Marker({
-                  position: myFuelRange.overview_path[i],
-                  // position: myFuelRange.overview_path[52],
-                  map: map
-                });
+                    // new google.maps.Marker({
+                    //   position: myFuelRange.overview_path[i],
+                    //   // position: myFuelRange.overview_path[52],
+                    //   map: map
+                    // });
                
-           }
-           console.log(myFuelRange.overview_path[i].B);
-           scope.$parent.$parent.gasStations(myFuelRange.overview_path[i].B, myFuelRange.overview_path[i].k)
-               var longitude = myFuelRange.overview_path[i].B;
+                // console.log(myFuelRange.overview_path[i]);
+                // console.log(myFuelRange.overview_path[i].B);
+                scope.$parent.$parent.gasStations(myFuelRange.overview_path[i].B, myFuelRange.overview_path[i].k)
+                // var longitude = myFuelRange.overview_path[i].B;
                
-               var latitude = myFuelRange.overview_path[i].k;
-               console.log(myFuelRange.overview_path[i].k);
+                // var latitude = myFuelRange.overview_path[i].k;
+                // console.log(myFuelRange.overview_path[i].k);
+            }
 
             });
 
             }
+
+            scope.addGasStations = function(mylat, mylng) {
+                
+
+                var coordObject = new google.maps.LatLng(mylat, mylng);
+                new google.maps.Marker({
+                    position: coordObject,
+                    icon: 'http://www.poi-factory.com/files/img/Chevron%20Gas%20Stations.bmp',
+                    map: map
+                });
+            }
+
+
 
 
             // function attachInstructionText(marker, text) {
