@@ -15,6 +15,7 @@ app.directive('map', function() {
         marker,
         mapObj,
         markerArray = [],
+        gasStationsArray = [],
         infowindow;
 
     mapObj = {
@@ -117,19 +118,7 @@ app.directive('map', function() {
                scope.milesPerMarker = (directionResult.routes[0].legs[0].distance.value * 0.00062137)/(myFuelRange.overview_path.length);
               
 
-              // for (var i = 0; i < myFuelRange.overview_path.length; i++) {
-              //   var marker = new google.maps.Marker({
-              //     position: myFuelRange.overview_path[22],
-              //     // position: myFuelRange.overview_path[52],
-              //     map: map
-              //   });
-              //   // console.log(scope.milesPerMarker);
-              //     // console.log(myRoute.steps[i].start_location);
-              //     // console.log(myRoute.steps[i].start_location);
-              //     // console.log(myFuelRange.overview_path[i]);
-              //   // attachInstructionText(marker, myRoute.steps[i].instructions);
-                
-              // }
+
               scope.$parent.$parent.updateMilesPerMarker(scope.milesPerMarker);
 
               // scope.$apply('updateMilesPerMarker(' + scope.milesPerMarker + ')');
@@ -142,8 +131,14 @@ app.directive('map', function() {
                   // position: myFuelRange.overview_path[52],
                   map: map
                 });
-               console.log(myFuelRange.overview_path[i]);
+               
            }
+           console.log(myFuelRange.overview_path[i].B);
+           scope.$parent.$parent.gasStations(myFuelRange.overview_path[i].B, myFuelRange.overview_path[i].k)
+               var longitude = myFuelRange.overview_path[i].B;
+               
+               var latitude = myFuelRange.overview_path[i].k;
+               console.log(myFuelRange.overview_path[i].k);
 
             });
 
