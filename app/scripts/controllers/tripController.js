@@ -31,16 +31,26 @@ app.controller('tripController', ['$scope', '$http',
         }
 
         $scope.gasStations = function(longitude, latitude) {
-            $http.get('http://www.devapi.mygasfeed.com/stations/radius/' + latitude + '/' + longitude + '/20/reg/price/rfej9napna.json?')
+            $http.get('http://api.mygasfeed.com/stations/radius/' + latitude + '/' + longitude + '/30/reg/price/8fkb7t88tk.json?')
                 .then(
                     function(response) {
-                        console.log(response.data.stations[0]);
+                        for (var i = 0; i < 100; i++) {
+                            
+                        console.log(response.data.stations[i]);
+                        
                         // console.log('latitude:', response.data.stations[0].lat);
                         // console.log('longitude:', response.data.stations[0].lng);
                         $scope.$broadcast('add-gas-station', {
-                            lat: response.data.stations[0].lat,
-                            lng: response.data.stations[0].lng
+                            lat: response.data.stations[i].lat,
+                            lng: response.data.stations[i].lng,
+                            name: response.data.stations[i].station,
+                            address: response.data.stations[i].address,
+                            city: response.data.stations[i].city,
+                            state: response.data.stations[i].region,
+                            zip: response.data.stations[i].zip,
+                            reg: response.data.stations[i].reg_price,
                         });
+                        };
                         // $scope.addGasStations(response.data.stations[0].lat, response.data.stations[0].lng);
 
                     });

@@ -39,16 +39,26 @@ app.directive('map', function() {
             '</small>' + '<br />' +
             '<label>Destination:</label>' + '<br />' +
             '<input ng-model="endPoint" type="text" name="Destination" required>' + '<br />' + '<br />' +
-            '<button class="getDirections" ng-click="getDirections()" ng-disabled="mapContainer.$invalid">Get Directions</button> ' +
-            '<button class="clearDirections alert" ng-click="clearDirections()" ng-disabled="mapContainer.$invalid">Clear</button>' +
             '</div>' +
-            '<div id="theMap"></div>' +
+            '<div id="theMap"></div>' + '<br />' +
+            '<button class="getDirections" ng-click="getDirections()" ng-disabled="mapContainer.$invalid">Get Directions</button> ' +
+            '<button class="getDirections" ng-click="clearDirections()" ng-disabled="mapContainer.$invalid">Clear</button>' + '<br />' +
             '</form>', // todo: use template url and template file
         link: function(scope, element, attrs) {
             scope.$on('add-gas-station', function(e, data) {
-                console.log("gas station latitude:", parseFloat(data.lat));
-                console.log("gas station longitude:", parseFloat(data.lng));
-                scope.addGasStations(parseFloat(data.lat), parseFloat(data.lng));
+                var i = 0;
+                while(i < 6){
+                    if (data.name != null && data.address != null && data.city != null && data.state != null && data.zip != null && data.reg != null && data.reg != "N/A") {
+                        // debugger;
+                    scope.addGasStation(parseFloat(data.lat), parseFloat(data.lng), data.name, data.address, data.city, data.state, data.zip, data.reg);
+                    i++;
+                }
+                    else {
+                        // debugger;
+
+                        console.log("gas station missing params");
+                    }
+                }
             });
             console.log("working!!!!!!!!!!!");
             scope.init = function() {
@@ -58,7 +68,7 @@ app.directive('map', function() {
                     streetViewControl: false
                 };
                 map = new google.maps.Map(document.getElementById('theMap'), mapOptions);
-                scope.endPoint = scope.destination !== undefined ? scope.destination : '716 Congress Ave #100, Austin, TX 78701';
+                scope.endPoint = scope.destination !== undefined ? scope.destination : '';
 
                 geocoder.geocode({
                     address: scope.endPoint
@@ -131,11 +141,11 @@ app.directive('map', function() {
                 console.log("New val for watched prpo", newVal);
                 // scope.range = num;
                 for (var i = newVal; i < myFuelRange.overview_path.length; i += newVal) {
-                    // new google.maps.Marker({
-                    //   position: myFuelRange.overview_path[i],
-                    //   // position: myFuelRange.overview_path[52],
-                    //   map: map
-                    // });
+                    new google.maps.Marker({
+                      position: myFuelRange.overview_path[i],
+                      // position: myFuelRange.overview_path[52],
+                      map: map
+                    });
                
                 // console.log(myFuelRange.overview_path[i]);
                 // console.log(myFuelRange.overview_path[i].B);
@@ -150,30 +160,43 @@ app.directive('map', function() {
 
             }
 
-            scope.addGasStations = function(mylat, mylng) {
+// scope.addGasStation(parseFloat(data.lat), parseFloat(data.lng), data.name, data.address, data.city, data.region, data.zip, data.reg_price);
+            scope.addGasStation = function(mylat, mylng, gasStationName, gasAddress, gasCity, gasState, gasZip, regularGas) {
                 
+                var contentString = '<div id="content">'+
+                  '<div id="siteNotice">'+
+                  '</div>'+
+                  '<h2 id="firstHeading" class="firstHeading">'+gasStationName+ '</h2>'+
+                  '<h5> Regular Gas Price: '+regularGas+'</h5>'+
+                  '<div id="bodyContent">'+'<p>'+gasAddress+'</p>'+
+                  '<p>'+gasCity+', '+gasState+' '+gasZip+'</p>'+
+                  '</div>'+
+                  '</div>';
 
+                var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+              });
+                
+                // var station = gasStationName.toUpperCase();
                 var coordObject = new google.maps.LatLng(mylat, mylng);
-                new google.maps.Marker({
+                var marker1 = new google.maps.Marker({
                     position: coordObject,
-                    icon: 'http://www.poi-factory.com/files/img/Chevron%20Gas%20Stations.bmp',
-                    map: map
+                    icon: '/images/gasstations/red_fuel.png',
+                    // icon: 'http://www.poi-factory.com/files/img/'+station+'%20Station.BMP',
+                    map: map,
+                    // title: gasStationName
                 });
+
+                google.maps.event.addListener(marker1, 'click', function() {
+                    console.log("Clicked")
+                    // infowindow.setContent(contentString); 
+                    infowindow.open(map,marker1);
+                    });
+                // return marker1;
+
+
+                // google.maps.event.trigger(map, 'resize');
             }
-
-
-
-
-            // function attachInstructionText(marker, text) {
-            //   google.maps.event.addListener(marker, 'click', function() {
-            //     // Open an info window when the marker is clicked on,
-            //     // containing the text of the step.
-            //     stepDisplay.setContent(text);
-            //     stepDisplay.open(map, marker);
-            //   });
-            // }
-
-
 
 
             scope.clearDirections = function() {

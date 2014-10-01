@@ -59,7 +59,7 @@ h3 {
 }
 
 .navbar-default .navbar-brand {
-    color: #2980b9; 
+    color: #c0392b; 
     font-family: 'Graduate', cursive;
     font-size: 27px;
     font-style: bold;
@@ -108,7 +108,7 @@ div.carCtrl {
     margin: 0;
     text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
     font-size: 5em;
-    color: #2980b9;
+    color: #c0392b;
 }
 
 .intro-divider {
@@ -126,8 +126,8 @@ div.carCtrl {
 }
 
 a.btn.btn-primary.btn-lg.btn-responsive {
-    background-color: #c0392b;
-    border-color: #c0392b;
+    background-color: blue;
+    border-color: blue;
     color: white;
     text-shadow: none;
 }
