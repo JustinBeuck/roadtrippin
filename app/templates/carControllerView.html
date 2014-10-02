@@ -1,27 +1,33 @@
         <div ng-controller="carController" class="carCtrl">
-        <div ng-controller="carController" class="carCtrl">
-        <div ng-controller="carController" class="carCtrl">
           <div ng-show="milesPerGallon.value != null" class="stats">
-          <h1>Road Trip Stats</h1>
-            <div>
-              <h2> Miles Per Gallon:  {{milesPerGallon.value}}</h2>
+            <h1 class="roadtripstats">Road Trip Stats</h1>
+            
+            <div class="col-xs-4">
+              <h2 class="head"> Tank Capacity</h2>
+              <input type="text" value="{{fuelCapacity.value}}" data-max="30" class="dial">
             </div>
-            <div>
-              <h2> Tank Capacity:  {{fuelCapacity.value}}</h2>
+            
+            <div class="col-xs-4">
+              <h2 class="head"> Combined MPG</h2>
+              <input type="text" value="{{milesPerGallon.value}}" data-max="50" class="dial2">
             </div>
-            <div>
-              <h2> Miles to Empty:  {{milesToEmptyTank}}</h2>
+            
+            <div class="col-xs-4">
+              <h2 class="head"> Total Range</h2>
+              <input type="text" value="{{milesToEmptyTank}}" class="dial3" data-max="500">
             </div>
+
           </div>
+
           <div ng-show="milesPerGallon.value == null">
-              <div>
+              <div class="titles">
                 Make:
                 <select class="form-control pull-right" ng-change="getmodels(selectedMakeId)" ng-model="selectedMakeId">
                   <option ng-repeat="make in makes" value="{{make.id}}">{{make.name}}</option>
                 </select>
               </div>
               {{error}}
-              <div>
+              <div class="titles">
                 Model:
                 <select class="form-control pull-right" ng-change="getyears(selectedModelId)" ng-model="selectedModelId">
                   <option ng-repeat="model in models" value="{{model.id}}">{{model.id}}</option>
@@ -29,8 +35,7 @@
               </div>
               {{error2}}
               
-              <div>
-              <div>
+              <div class="titles">
                 Year:<select class="form-control pull-right" ng-change="getTrims(selectedYearId)" ng-model="selectedYearId">>
                   <option ng-repeat="yearObj in years" value="{{yearObj.id}}">{{yearObj.year}}</option>
                 </select>
@@ -38,12 +43,11 @@
               
               {{error3}}
               
-            
+            <div class="titles">
               Trim:<select class="form-control pull-right" ng-options="style.name for style in styles"  ng-model="selectedtrimId" ng-change="getFuelCapacity()"></select>
               
             </div>
           </div>
-        </div>
           <!-- <br />
           <div class="row home-button">
             <a class="btn btn-primary btn-lg btn-responsive" ng-click="nextView2()" type="button">Start Your Road Trip</a>

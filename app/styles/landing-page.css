@@ -4,7 +4,7 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 .navbar-wrapper {
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.3);
 }
 
 * {
@@ -74,6 +74,12 @@ h3 {
     margin-bottom: 40px;
 }
 
+div.titles {
+    color: white;
+    text-shadow: -3px 0 #c0392b, 0 3px #c0392b, 3px 0 #c0392b, 0 -3px #c0392b;
+};
+
+
 .intro-header {
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 50px;
@@ -91,16 +97,28 @@ h3 {
     position: relative;
     padding-top: 20%;
     padding-bottom: 20%;
+    text-align: center;
+}
 
+h2.head {
+    color: #7f8c8d;
+    text-shadow: 1 1 2px white;
+    /*text-align: center;*/
 
+}
+h1.roadtripstats {
+    /*color:#2980b9;*/
+    color: white;
+  text-shadow: -3px 0 #c0392b, 0 3px #c0392b, 3px 0 #c0392b, 0 -3px #c0392b;
 }
 
 div.carCtrl {
-    background-color:rgba(255,255,255,0.0);
+    background-color:rgba(0,0,0,0.3);
     border-radius: 5px;
     margin: 2px;
-    color: #2980b9;
+    color: #c0392b;
     font-family: 'Graduate', cursive;
+    
 
 }
 
@@ -127,15 +145,17 @@ div.carCtrl {
 
 a.btn.btn-primary.btn-lg.btn-responsive {
     background-color: blue;
-    border-color: blue;
+    border-color: #c0392b;
     color: white;
     text-shadow: none;
 }
 
 .stats {
-    background-color: white;
-    border: 2px solid #2980b9;
-    margin-left: 3px;
+    background-color:rgba(0,0,0,0.5);
+    border: 2px solid rgba(41,128,185, .5);
+    margin-left: 10px;
+    padding-left: 5px;
+    overflow: auto;
 }
 
 /* media */

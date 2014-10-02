@@ -92,6 +92,7 @@
           function (response) {
             // console.log("trying to find MPG:", response.data.equipment[0].attributes)
             // nicks dumb ill crazy hot stupid fresh javascript skills below.
+            console.log(response);
             $scope.milesPerGallon = _.find(response.data.equipment[0].attributes,
                                  function(obj){ return obj.name == "Epa Combined Mpg"; });
             console.log($scope.milesPerGallon.value)
@@ -105,6 +106,37 @@
 
             $rootScope.milesToEmptyTank = $scope.milesToEmptyTank;
             $scope.grabMiles($scope.milesToEmptyTank);
+
+            setTimeout(function() {
+
+
+            $(".dial").knob({
+                  readOnly: true,
+                  width: "100",
+                  fgColor: "#c0392b",
+                  skin: "tron",
+                  thickness: ".5",
+                  displayPrevious: true
+                              });
+
+            $(".dial2").knob({
+                  readOnly: true,
+                  width: "100",
+                  fgColor: "#3498db",
+                  skin: "tron",
+                  thickness: ".5",
+                  displayPrevious: true
+                              });
+
+            $(".dial3").knob({
+                  readOnly: true,
+                  width: "100",
+                  fgColor: "#16a085",
+                  skin: "tron",
+                  thickness: ".5",
+                  displayPrevious: true
+                              });
+              }, 1);
               
     
           },

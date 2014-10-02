@@ -34,7 +34,7 @@ app.controller('tripController', ['$scope', '$http',
             $http.get('http://api.mygasfeed.com/stations/radius/' + latitude + '/' + longitude + '/30/reg/price/8fkb7t88tk.json?')
                 .then(
                     function(response) {
-                        for (var i = 0; i < 100; i++) {
+                        for (var i = 0; i < 10; i++) {
                             
                         console.log(response.data.stations[i]);
                         

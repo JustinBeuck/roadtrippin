@@ -46,29 +46,28 @@ app.directive('map', function() {
             '</form>', // todo: use template url and template file
         link: function(scope, element, attrs) {
             scope.$on('add-gas-station', function(e, data) {
-                var i = 0;
-                while(i < 6){
-                    if (data.name != null && data.address != null && data.city != null && data.state != null && data.zip != null && data.reg != null && data.reg != "N/A") {
+            
+                    if (data.name != null && data.address != null && data.city != null && data.state != null && data.zip != null && data.reg != null && data.reg == "N/A") {
                         // debugger;
-                    scope.addGasStation(parseFloat(data.lat), parseFloat(data.lng), data.name, data.address, data.city, data.state, data.zip, data.reg);
-                    i++;
+                    scope.addGasStation(parseFloat(data.lat), parseFloat(data.lng), data.name, data.address, data.city, data.state, data.zip, data.reg = 'Price is Unavailable');
+                    
                 }
                     else {
-                        // debugger;
 
-                        console.log("gas station missing params");
-                    }
+                        scope.addGasStation(parseFloat(data.lat), parseFloat(data.lng), data.name, data.address, data.city, data.state, data.zip, data.reg );
+                
                 }
             });
             console.log("working!!!!!!!!!!!");
             scope.init = function() {
+
                 var mapOptions = {
                     zoom: scope.zoom !== undefined ? scope.zoom : 16,
                     mapTypeId: scope.type.toLowerCase(),
                     streetViewControl: false
                 };
                 map = new google.maps.Map(document.getElementById('theMap'), mapOptions);
-                scope.endPoint = scope.destination !== undefined ? scope.destination : '';
+                scope.endPoint = scope.destination !== undefined ? scope.destination : '8012 San Miguel Cir Buena Park, CA 90620';
 
                 geocoder.geocode({
                     address: scope.endPoint
@@ -143,6 +142,7 @@ app.directive('map', function() {
                 for (var i = newVal; i < myFuelRange.overview_path.length; i += newVal) {
                     new google.maps.Marker({
                       position: myFuelRange.overview_path[i],
+                      icon: '/images/gasstations/red_fuel.png',
                       // position: myFuelRange.overview_path[52],
                       map: map
                     });
@@ -151,7 +151,7 @@ app.directive('map', function() {
                 // console.log(myFuelRange.overview_path[i].B);
                 scope.$parent.$parent.gasStations(myFuelRange.overview_path[i].B, myFuelRange.overview_path[i].k)
                 // var longitude = myFuelRange.overview_path[i].B;
-               
+               $('#directionsList').show();
                 // var latitude = myFuelRange.overview_path[i].k;
                 // console.log(myFuelRange.overview_path[i].k);
             }
