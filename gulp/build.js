@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var plumber = require('gulp-plumber');
 
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license']
@@ -27,33 +28,25 @@ gulp.task('scripts', function () {
     .pipe($.size());
 });
 
-gulp.task('partials', function () {
-  return gulp.src('app/partials/**/*.html')
-    .pipe($.minifyHtml({
-      empty: true,
-      spare: true,
-      quotes: true
-    }))
-    .pipe($.ngHtml2js({
-      moduleName: 'roadtrippin',
-      prefix: 'partials/'
-    }))
-    .pipe(gulp.dest('.tmp/partials'))
+gulp.task('copy-templates', function () {
+  return gulp.src('app/templates/**/*.html')
+    .pipe(gulp.dest('dist/templates'))
     .pipe($.size());
 });
 
-gulp.task('html', ['styles', 'scripts', 'partials'], function () {
+gulp.task('html', ['styles', 'scripts', 'copy-templates'], function () {
   var jsFilter = $.filter('**/*.js');
   var cssFilter = $.filter('**/*.css');
   var assets;
 
   return gulp.src('app/*.html')
-    .pipe($.inject(gulp.src('.tmp/partials/**/*.js'), {
+    .pipe($.inject(gulp.src('.tmp/templates/**/*.js'), {
       read: false,
-      starttag: '<!-- inject:partials -->',
+      starttag: '<!-- inject:templates -->',
       addRootSlash: false,
       addPrefix: '../'
     }))
+    .pipe(plumber({ errorHandler: handleError }))
     .pipe(assets = $.useref.assets())
     .pipe($.rev())
     .pipe(jsFilter)
@@ -94,4 +87,4 @@ gulp.task('clean', function () {
   return gulp.src(['.tmp', 'dist'], { read: false }).pipe($.rimraf());
 });
 
-gulp.task('build', ['html', 'partials', 'images', 'fonts']);
+gulp.task('build', ['html', 'copy-templates', 'images', 'fonts']);
