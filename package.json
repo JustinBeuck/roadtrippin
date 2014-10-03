@@ -1,7 +1,10 @@
 {
   "name": "roadtrippin",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.9.5",
+    "gzippo": "^0.2.0"
+  },
   "devDependencies": {
     "gulp": "^3.8.0",
     "gulp-autoprefixer": "^0.0.6",
