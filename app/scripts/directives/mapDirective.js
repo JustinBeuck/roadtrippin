@@ -135,10 +135,8 @@ app.directive('map', function() {
 
                 scope.$parent.$parent.updateMilesPerMarker(scope.milesPerMarker);
 
-              // scope.$apply('updateMilesPerMarker(' + scope.milesPerMarker + ')');
+
                 scope.$parent.$parent.$watch('num', function(newVal) {
-                console.log("New val for watched prpo", newVal);
-                // scope.range = num;
                 for (var i = newVal; i < myFuelRange.overview_path.length; i += newVal) {
                     new google.maps.Marker({
                       position: myFuelRange.overview_path[i],
@@ -150,7 +148,7 @@ app.directive('map', function() {
                 // console.log(myFuelRange.overview_path[i]);
                 // console.log(myFuelRange.overview_path[i].B);
                 scope.$parent.$parent.gasStations(myFuelRange.overview_path[i].B, myFuelRange.overview_path[i].k)
-                // var longitude = myFuelRange.overview_path[i].B;
+                // visolate scope & to fix ^
                $('#directionsList').show();
                 // var latitude = myFuelRange.overview_path[i].k;
                 // console.log(myFuelRange.overview_path[i].k);
