@@ -1,9 +1,4 @@
- // var app = angular.module('app',[]);
 
-// app.controller('tripController', ['$scope', function($scope) {
-//     $scope.milesPerMarker;
-//     console.log($scope.milesPerMarker);
-// }])
 
 app.directive('map', function() {
     'use strict';
@@ -14,8 +9,6 @@ app.directive('map', function() {
         map,
         marker,
         mapObj,
-        markerArray = [],
-        gasStationsArray = [],
         infowindow;
 
     mapObj = {
@@ -47,7 +40,7 @@ app.directive('map', function() {
         link: function(scope, element, attrs) {
             scope.$on('add-gas-station', function(e, data) {
             
-                    if (data.name != null && data.address != null && data.city != null && data.state != null && data.zip != null && data.reg != null && data.reg == "N/A") {
+                    if (data.name !== null && data.address !== null && data.city !== null && data.state !== null && data.zip !== null && data.reg !== null && data.reg === "N/A") {
                         // debugger;
                     scope.addGasStation(parseFloat(data.lat), parseFloat(data.lng), data.name, data.address, data.city, data.state, data.zip, data.reg = 'Price is Unavailable');
                     
@@ -186,7 +179,7 @@ app.directive('map', function() {
                 });
 
                 google.maps.event.addListener(marker1, 'click', function() {
-                    console.log("Clicked")
+                    console.log('Clicked')
                     // infowindow.setContent(contentString); 
                     infowindow.open(map,marker1);
                     });
