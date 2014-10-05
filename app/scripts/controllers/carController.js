@@ -24,7 +24,7 @@
             var makeId = parseInt(makeIdStr);
 
             var make = _.find($scope.makes, function(scopeMake) {
-                return scope.Make.id === makeId
+                return scopeMake.id === makeId
             });
             $http.get('https://api.edmunds.com/api/vehicle/v2/' + make.name + '/models?fmt=json&api_key=7fr982626at7633r7qgcwu87')
                 .then(
