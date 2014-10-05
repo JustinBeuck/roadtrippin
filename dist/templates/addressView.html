@@ -1,0 +1,97 @@
+<br />
+
+
+<!-- <div ng-app="mapComponent"> -->
+
+        <div class="col-md-4" ng-include src="'/templates/carControllerView.html'"></div>
+        <div class="col-md-8">
+            <map type="roadmap" ></map>
+        </div>
+        <div class="col-md-4" style="margin-top: -400px;">
+            <div id="directionsList" style="display: none;"></div>
+        </div>
+
+
+
+
+
+<style type="text/css">
+
+* {
+  /*border: 1px solid red;*/
+}
+
+label {
+  margin-top: 5px;
+  /*background-color: rgba(192, 57, 43, );*/
+  color: white;
+  text-shadow: -3px 0 #c0392b, 0 3px #c0392b, 3px 0 #c0392b, 0 -3px #c0392b;
+  ;
+}
+
+body {
+  /*background-image: url('./images/grey_wash_wall.png') ;*/
+  background-image: url('./images/background.jpg') ;
+  background-position: center center;
+  /*background-color: silver;*/
+  }
+
+  .getDirections {
+    color: white;
+    text-shadow: -3px 0 #c0392b, 0 3px #c0392b, 3px 0 #c0392b, 0 -3px #c0392b;
+    background-color: #c0392b;
+  }
+
+  #theMap {
+   display: block;
+   width: 100%;
+   height: 500px;
+
+}
+
+map {
+  background-color: blue;
+}
+
+.directions {
+  background-color: rgba(0, 0, 0,0.1);
+}
+
+div#directionsList {
+    
+  background-color: white;
+    top: 0;
+    bottom:0;
+    /*position:fixed;*/
+    overflow-y:scroll;
+    overflow-x:hidden;
+    height: 400px;
+    width: 100%;
+    border: 2px solid rgba(41,128,185, .5);
+    border-radius: 5px;
+    box-shadow: 10px 10px 5px #888888;
+    /*background-image: url('./images/fuel.jpg');*/
+    /*opacity: 0.5;*/
+}
+
+
+.mapContainer {
+  display:block;
+  height: 100%;
+    width:100%;
+    margin-left:5px;
+    padding: 10px;
+    border: 2px solid rgba(41,128,185, .5);
+}
+img {
+    max-width: none;
+}
+#wrongAddress {
+    display:none;
+}
+
+input {
+  width: 100%;
+}
+
+</style>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html class="no-js" ng-app="roadtrippin">
+  <head>
+    <meta charset="utf-8">
+    <title>Road Trippin'</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Graduate' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="styles/vendor-8c482912.css">
+
+    <link rel="stylesheet" href="styles/main-ea2cbf82.css">
+
+    <script src="scripts/modernizr-c1ff1650.js"></script>
+    </head>
+    <body ng-controller="tripController" ng-click="check()">
+    
+    <!--[if lt IE 10]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top navbar-wrapper" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Road Trippin'</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="./views/about.html"></a>
+            </li>
+            <li>
+              <a href="./views/main.html"></a>
+            </li>
+            <li>
+              <a href="#">Login/Sign Up</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+    </nav>
+    <!-- end navigation -->
+    <!-- video section -->
+    <!-- Header -->
+            <ng-view></ng-view>
+
+        <script src="scripts/vendor-d5373836.js"></script>
+        <script src="scripts/main-f1830291.js"></script>
+      </body>
+    </html>
